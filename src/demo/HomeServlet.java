@@ -18,9 +18,14 @@ public class HomeServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        PrintWriter out = response.getWriter();
-        out.println(getContent());
-        out.close();
+        try {
+            PrintWriter out = response.getWriter();
+            out.println(getContent());
+            out.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new ServletException(e);
+        }
     }
 
     private String getContent() {
